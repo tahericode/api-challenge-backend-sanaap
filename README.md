@@ -23,7 +23,12 @@ SECRET_KEY=replace-with-a-strong-secret-key
 # Database (if using docker-compose db)
 DATABASE_URL=postgres://admin:admin@db:5432/dms
 
-# MinIO (for docker-compose setup)
+# Storage
+# When USE_MINIO=true, files are stored in MinIO.
+# When USE_MINIO=false, files are stored locally under <project-root>/docs.
+USE_MINIO=true
+
+# MinIO (for docker-compose setup; used when USE_MINIO=true)
 MINIO_ENDPOINT=minio:9000
 MINIO_ACCESS_KEY=minio
 MINIO_SECRET_KEY=minio123
