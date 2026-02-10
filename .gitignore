@@ -1,0 +1,59 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+venv/
+.envrc
+.python-version
+
+# Environment variables
+.env
+*.env.*
+
+# Django stuff
+*.log
+staticfiles/
+static/
+media/
+tmp/
+*.sqlite3
+
+# Migrations cache (keep migration .py files tracked)
+*/migrations/__pycache__/
+
+# Test / coverage artifacts
+.coverage
+.coverage.*
+.cache/
+htmlcov/
+pytest_cache/
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Poetry
+.poetry/
+
+# MyPy / type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Node / frontend (if added later)
+node_modules/
+dist/
+build/
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+

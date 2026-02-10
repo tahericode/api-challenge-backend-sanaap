@@ -1,0 +1,62 @@
+version: '3'
+
+tasks:
+
+  install:
+    desc: Install Python dependencies with Poetry
+    cmds:
+      - cmd: poetry install
+
+  migrate:
+    desc: Run Django migrations (dev settings)
+    cmds:
+      - cmd: poetry run python manage.py migrate
+
+  createsuperuser:
+    desc: Create a Django superuser for accessing the admin site
+    cmds:
+      - cmd: poetry run python manage.py createsuperuser
+
+  makemigrations:
+    desc: Create Django migrations (dev settings)
+    cmds:
+      - cmd: poetry run python manage.py makemigrations
+
+  runserver:
+    desc: Start Django development server on 0.0.0.0:8000 (dev settings)
+    cmds:
+      - cmd: poetry run python manage.py runserver 0.0.0.0:8000
+
+  db:
+    desc: Start local infrastructure (PostgreSQL, Redis, MinIO) via Docker
+    cmds:
+      - cmd: docker compose up -d db redis minio
+
+  db-stop:
+    desc: Stop all Docker services
+    cmds:
+      - cmd: docker compose down
+
+  dev:
+    desc: Prepare environment, start services, run migrations and start server
+    deps: [install]
+    cmds:
+      - task: db
+      - task: makemigrations
+      - task: migrate
+      - task: runserver
+
+  local-dev:
+    desc: Run project fully locally with Poetry (no Docker)
+    deps: [install]
+    cmds:
+      - task: makemigrations
+      - task: migrate
+      - task: runserver
+
+  docker-dev:
+    desc: Run full stack via docker-compose (web, db, redis, minio, nginx)
+    cmds:
+      - cmd: docker compose up --build
+
+
